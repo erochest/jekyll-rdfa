@@ -45,10 +45,10 @@ prefix:
   err:    http://www.ericrochester.com/reading#
 ```
 
-rdfa: http://rdfa.info/ RDFa
-ttl: http://www.w3.org/TR/turtle/ Turtle
-json-ld: http://json-ld.org/ JSON-LD
-plugins: https://jekyllrb.com/docs/plugins/
-frontmatter: http://jekyllrb.com/docs/frontmatter/
-yaml: http://yaml.org/
-rdf_type: http://www.w3.org/TR/rdf-schema/#ch_type
+[rdfa]: http://rdfa.info/ "RDFa"
+[ttl]: http://www.w3.org/TR/turtle/ "Turtle"
+[json-ld]: http://json-ld.org/ "JSON-LD"
+[plugins]: https://jekyllrb.com/docs/plugins/
+[frontmatter]: http://jekyllrb.com/docs/frontmatter/
+[yaml]: http://yaml.org/
+[rdf_type]: http://www.w3.org/TR/rdf-schema/#ch_type
