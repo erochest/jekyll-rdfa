@@ -14,9 +14,9 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = ['README.md']
 
-  s.add_runtime_dependency 'json/ld',   '~> 1.1'
+  s.add_runtime_dependency 'json-ld',   '~> 1.1'
   s.add_runtime_dependency 'rdf',       '~> 1.1'
-  s.add_runtime_dependency 'rdf/turle', '~> 1.1'
-  s.add_runtime_dependency 'rdf/rdfa',  '~> 1.1'
+  s.add_runtime_dependency 'rdf-turle', '~> 1.1'
+  s.add_runtime_dependency 'rdf-rdfa',  '~> 1.1'
   s.add_runtime_dependency 'jekyll',    '~> 2.5'
 end
