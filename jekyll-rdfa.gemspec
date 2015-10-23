@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-rdfa'
-  s.version     = '0.0.1'
+  s.version     = '0.0.2'
   s.date        = '2015-10-22'
   s.summary     = 'A Jekyll generator for RDFa.'
   s.authors     = ["Eric Rochester", "Purdom Lindblad"]
