@@ -22,10 +22,20 @@ module Jekyll
 
         attribs = {}
         attribs[:vocab] = post.data["vocab"] if post.data.member? "vocab"
+
+        needs_typeof = false
         if post.data.member? "resource"
           attribs[:resource] = post.data["resource"]
-          attribs[:typeof] = post.data["typeof"] if post.data.member? "typeof"
+          needs_typeof = true
         end
+        if post.data.member? "about"
+          attribs[:about] = post.data["about"]
+          needs_typeof = true
+        end
+        if post.data.member? "typeof" and needs_typeof
+          attribs[:typeof] = post.data["typeof"]
+        end
+
         if post.data.member? "prefix"
           prefixes = post.data["prefix"]
                      .to_a.map { |key, value| "#{key}: #{value}" }
@@ -40,10 +50,13 @@ module Jekyll
                    .join ""
           html = "<div#{markup}>#{html}</div>"
         end
-        # puts post.inspect
-        # puts html
-        # puts
-        graph.from_rdfa html
+        count = 0
+        RDF::Reader.for(:rdfa).new(html) do |reader|
+          reader.each_statement do |statement|
+            graph << statement
+            count += 1
+          end
+        end
       end
 
       dirname = "_linked-data"
