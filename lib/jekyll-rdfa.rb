@@ -14,10 +14,10 @@ module Jekyll
       require 'rdf/turtle'
       require 'rdf/rdfa'
 
-      converter = site.getConverterImpl(Jekyll::Converters::Markdown)
+      converter = site.find_converter_instance(Jekyll::Converters::Markdown)
 
       graph = RDF::Graph.new
-      site.posts.each do |post|
+      site.posts.docs.each do |post|
         html = converter.convert(post.content)
 
         attribs = {}
