@@ -14,43 +14,11 @@ module Jekyll
       require 'rdf/turtle'
       require 'rdf/rdfa'
 
-      converter = site.find_converter_instance(Jekyll::Converters::Markdown)
-
       graph = RDF::Graph.new
-      site.posts.docs.each do |post|
-        html = converter.convert(post.content)
 
-        attribs = {}
-        attribs[:vocab] = post.data["vocab"] if post.data.member? "vocab"
-
-        needs_typeof = false
-        if post.data.member? "resource"
-          attribs[:resource] = post.data["resource"]
-          needs_typeof = true
-        end
-        if post.data.member? "about"
-          attribs[:about] = post.data["about"]
-          needs_typeof = true
-        end
-        if post.data.member? "typeof" and needs_typeof
-          attribs[:typeof] = post.data["typeof"]
-        end
-
-        if post.data.member? "prefix"
-          prefixes = post.data["prefix"]
-                     .to_a.map { |key, value| "#{key}: #{value}" }
-                     .join " "
-          attribs[:prefix] = prefixes
-        end
-
-        unless attribs.empty?
-          markup = attribs
-                   .to_a
-                   .map { |key, value| " #{key}='#{value}'"}
-                   .join ""
-          html = "<div#{markup}>#{html}</div>"
-        end
-        count = 0
+      count = 0
+      site.docs_to_write.each do |document|
+        html = Jekyll::Renderer.new(site, document, site.site_payload).run
         RDF::Reader.for(:rdfa).new(html) do |reader|
           reader.each_statement do |statement|
             graph << statement
