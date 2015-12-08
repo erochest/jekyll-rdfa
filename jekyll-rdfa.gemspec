@@ -1,6 +1,6 @@
 Gem::Specification.new do |s|
   s.name        = 'jekyll-rdfa'
-  s.version     = '0.0.2'
+  s.version     = '0.0.3'
   s.date        = '2015-10-22'
   s.summary     = 'A Jekyll generator for RDFa.'
   s.authors     = ["Eric Rochester", "Purdom Lindblad"]
@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = ['README.md']
 
-  s.add_runtime_dependency 'json-ld',   '~> 1.1'
-  s.add_runtime_dependency 'rdf',       '~> 1.1'
+  s.add_runtime_dependency 'json-ld',    '~> 1.1'
+  s.add_runtime_dependency 'rdf',        '~> 1.1'
   s.add_runtime_dependency 'rdf-turtle', '~> 1.1'
-  s.add_runtime_dependency 'rdf-rdfa',  '~> 1.1'
-  s.add_runtime_dependency 'nokogiri', '~> 1.6'
-  s.add_runtime_dependency 'jekyll',    '>= 3.0'
+  s.add_runtime_dependency 'rdf-rdfa',   '~> 1.1'
+  s.add_runtime_dependency 'nokogiri',   '~> 1.6'
+  s.add_runtime_dependency 'jekyll',     '~> 3.0'
 end
