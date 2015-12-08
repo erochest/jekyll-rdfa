@@ -18,5 +18,6 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'rdf',       '~> 1.1'
   s.add_runtime_dependency 'rdf-turtle', '~> 1.1'
   s.add_runtime_dependency 'rdf-rdfa',  '~> 1.1'
+  s.add_runtime_dependency 'nokogiri', '~> 1.6'
   s.add_runtime_dependency 'jekyll',    '>= 3.0'
 end
