@@ -14,10 +14,10 @@ Gem::Specification.new do |s|
 
   s.extra_rdoc_files = ['README.md']
 
-  s.add_runtime_dependency 'json-ld',    '~> 1.1'
-  s.add_runtime_dependency 'rdf',        '~> 1.1'
-  s.add_runtime_dependency 'rdf-turtle', '~> 1.1'
-  s.add_runtime_dependency 'rdf-rdfa',   '~> 1.1'
+  s.add_runtime_dependency 'json-ld',    '~> 2.1'
+  s.add_runtime_dependency 'rdf',        '~> 2.1'
+  s.add_runtime_dependency 'rdf-turtle', '~> 2.0'
+  s.add_runtime_dependency 'rdf-rdfa',   '~> 2.0'
   s.add_runtime_dependency 'nokogiri',   '~> 1.6'
-  s.add_runtime_dependency 'jekyll',     '~> 3.0'
+  s.add_runtime_dependency 'jekyll',     '~> 3.3'
 end
