@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency 'json-ld',    '~> 2.1'
   s.add_runtime_dependency 'rdf',        '~> 2.1'
+  s.add_runtime_dependency 'rdf-rdfxml', '~> 2.0'
   s.add_runtime_dependency 'rdf-turtle', '~> 2.0'
   s.add_runtime_dependency 'rdf-rdfa',   '~> 2.0'
   s.add_runtime_dependency 'nokogiri',   '~> 1.6'

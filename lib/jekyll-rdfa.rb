@@ -8,11 +8,16 @@ module Jekyll
 
     def generate(site)
       require 'fileutils'
+      require 'pathname'
       require 'json'
       require 'json/ld'
       require 'rdf'
       require 'rdf/turtle'
+      require 'rdf/rdfxml'
       require 'rdf/rdfa'
+
+      outputs = site.config['rdfa']['outputs'] || ['_linked-data/posts.ttl',
+                                                   '_linked-data/posts.json']
 
       graph = RDF::Graph.new
 
@@ -27,21 +32,36 @@ module Jekyll
         end
       end
 
-      dirname = "_linked-data"
-      FileUtils.mkpath(dirname) unless File.exists?(dirname)
+      outputs.each do |output|
+        outpath = Pathname.new(output)
+        dirname = outpath.dirname
+        dirname.mkpath unless dirname.exist?
+        self.write_graph(site, graph, outpath)
+      end
+    end
 
-      File.open("#{dirname}/posts.ttl", 'w') do |file|
-        file.write(graph.to_ttl)
+    def write_graph(site, graph, pathname)
+      case pathname.extname
+      when ".ttl"
+        RDF::Turtle::Writer.open(pathname) do |writer|
+          writer << graph
+        end
+      when ".json"
+        JSON::LD::Writer.open(pathname) do |writer|
+          writer << graph
+        end
+      when ".rdf"
+        RDF::RDFXML::Writer.open(pathname) do |writer|
+          writer << graph
+        end
+      when ".xml"
+        RDF::RDFXML::Writer.open(pathname) do |writer|
+          writer << graph
+        end
       end
-      site.static_files << Jekyll::StaticFile.new(
-        site, "_linked-data", "", "posts.ttl"
-      )
-      File.open("#{dirname}/posts.json", 'w') do |file|
-        file.write(graph.dump(:jsonld, standard_prefixes: true))
-      end
-      site.static_files << Jekyll::StaticFile.new(
-        site, "_linked-data", "", "posts.json"
-      )
+
+      dir, base = pathname.split
+      site.static_files << Jekyll::StaticFile.new(site, dir.to_s, "", base.to_s)
     end
   end
 end

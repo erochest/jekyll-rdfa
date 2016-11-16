@@ -17,6 +17,22 @@ gem install jekyll-rdfa
 Also see the [Jekyll page on Plugins][plugins] for more information on
 how to apply this to your site.
 
+## Configuration
+
+By default, this outputs two files: `_linked-data/posts.json` and
+`_linked-data/posts.ttl`. You can now set this in the `_config.yaml` file
+for the site:
+
+```yaml
+rdfa:
+  outputs:
+    - _rdfa-output/graph.ttl
+    - _rdfa-output/graph.json
+    - _rdfa-output/graph.rdf
+```
+
+The value for `rdfa.outputs` *must* be a list. And as this example shows, you can also now opt to output RDF/XML.
+
 ## YAML Metadata
 
 `jekyll-rdfa` also pays attention to a number of keys in the
